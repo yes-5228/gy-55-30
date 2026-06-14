@@ -26,3 +26,29 @@ class LockerCell(models.Model):
 
     def __str__(self):
         return f"{self.zone}-{self.code}"
+
+
+class ReleaseRequest(models.Model):
+    class Status(models.TextChoices):
+        PENDING = "pending", "待审批"
+        APPROVED = "approved", "已通过"
+        REJECTED = "rejected", "已拒绝"
+
+    locker_cell = models.ForeignKey(
+        LockerCell,
+        on_delete=models.CASCADE,
+        related_name="release_requests",
+    )
+    reason = models.TextField()
+    applicant = models.CharField(max_length=40, default="客服")
+    reviewer = models.CharField(max_length=40, blank=True)
+    status = models.CharField(max_length=20, choices=Status.choices, default=Status.PENDING)
+    review_remark = models.CharField(max_length=200, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    reviewed_at = models.DateTimeField(null=True, blank=True)
+
+    class Meta:
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"释放申请 {self.locker_cell.code} {self.get_status_display()}"

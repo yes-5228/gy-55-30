@@ -1,5 +1,6 @@
-import { RefreshCw, RotateCcw, Wrench } from "lucide-react";
+import { RefreshCw, Send, Wrench } from "lucide-react";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 import { lockersApi } from "../api/modules";
 import DataTable from "../components/DataTable";
@@ -12,6 +13,7 @@ export default function LockerMonitorPage() {
   const [cells, setCells] = useState([]);
   const [summary, setSummary] = useState(null);
   const [error, setError] = useState("");
+  const navigate = useNavigate();
 
   const load = async () => {
     setError("");
@@ -38,11 +40,15 @@ export default function LockerMonitorPage() {
     }
   };
 
+  const applyRelease = (cellId) => {
+    navigate("/release-requests", { state: { lockerCellId: cellId } });
+  };
+
   return (
     <>
       <PageHeader
         title="柜格状态监控"
-        description="查看柜格占用、开门、维护状态，支持释放柜格和标记维护。"
+        description="查看柜格占用、开门、维护状态，支持申请释放柜格和标记维护。"
         action={<button className="ghost" onClick={load}><RefreshCw size={16} />刷新</button>}
       />
       <div className="metric-grid compact">
@@ -66,7 +72,9 @@ export default function LockerMonitorPage() {
               title: "操作",
               render: (row) => (
                 <div className="row-actions">
-                  <button className="ghost" onClick={() => operate(() => lockersApi.reset(row.id))}><RotateCcw size={15} />释放</button>
+                  {row.status !== "empty" && (
+                    <button className="ghost" onClick={() => applyRelease(row.id)}><Send size={15} />申请释放</button>
+                  )}
                   <button className="ghost danger" onClick={() => operate(() => lockersApi.markMaintenance(row.id))}><Wrench size={15} />维护</button>
                 </div>
               ),

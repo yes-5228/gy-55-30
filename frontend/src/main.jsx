@@ -7,6 +7,7 @@ import DashboardPage from "./pages/DashboardPage.jsx";
 import InboundPage from "./pages/InboundPage.jsx";
 import PickupPage from "./pages/PickupPage.jsx";
 import LockerMonitorPage from "./pages/LockerMonitorPage.jsx";
+import ReleaseRequestPage from "./pages/ReleaseRequestPage.jsx";
 import ReturnPage from "./pages/ReturnPage.jsx";
 import NotificationsPage from "./pages/NotificationsPage.jsx";
 import "./styles/global.css";
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "inbound", element: <InboundPage /> },
       { path: "pickup", element: <PickupPage /> },
       { path: "lockers", element: <LockerMonitorPage /> },
+      { path: "release-requests", element: <ReleaseRequestPage /> },
       { path: "returns", element: <ReturnPage /> },
       { path: "notifications", element: <NotificationsPage /> },
     ],

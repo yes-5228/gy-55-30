@@ -10,6 +10,8 @@ const statusMap = {
   return_pending: "red",
   returned: "gray",
   pending: "amber",
+  approved: "green",
+  rejected: "red",
   completed: "green",
   sent: "green",
   failed: "red",

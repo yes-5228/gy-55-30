@@ -330,6 +330,18 @@ th {
   gap: 8px;
 }
 
+.review-inline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.review-inline input {
+  flex: 1 1 160px;
+  min-width: 120px;
+}
+
 @media (max-width: 980px) {
   .app-shell {
     grid-template-columns: 1fr;

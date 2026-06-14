@@ -1,4 +1,4 @@
-import { Bell, Boxes, ClipboardList, LayoutDashboard, PackagePlus, RotateCcw, ScanLine } from "lucide-react";
+import { Bell, Boxes, ClipboardList, LayoutDashboard, PackagePlus, RotateCcw, ScanLine, Send } from "lucide-react";
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
@@ -7,6 +7,7 @@ const navItems = [
   { to: "/inbound", label: "快件入库", icon: PackagePlus },
   { to: "/pickup", label: "取件开箱", icon: ScanLine },
   { to: "/lockers", label: "柜格监控", icon: Boxes },
+  { to: "/release-requests", label: "远程释放", icon: Send },
   { to: "/returns", label: "退件处理", icon: RotateCcw },
   { to: "/notifications", label: "通知记录", icon: Bell },
 ];

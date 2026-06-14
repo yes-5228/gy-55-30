@@ -7,6 +7,13 @@ export const lockersApi = {
   markMaintenance: (id) => api.post(`/lockers/cells/${id}/mark_maintenance/`, {}),
 };
 
+export const releaseRequestsApi = {
+  list: () => api.get("/lockers/release-requests/"),
+  apply: (payload) => api.post("/lockers/release-requests/", payload),
+  approve: (id, payload) => api.post(`/lockers/release-requests/${id}/approve/`, payload),
+  reject: (id, payload) => api.post(`/lockers/release-requests/${id}/reject/`, payload),
+};
+
 export const parcelsApi = {
   list: () => api.get("/parcels/"),
   inbound: (payload) => api.post("/parcels/inbound/", payload),
